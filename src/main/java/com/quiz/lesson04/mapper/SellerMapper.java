@@ -14,5 +14,8 @@ public interface SellerMapper {
 			@Param("temperature") Double temperature);
 	
 	public Seller selectLastSeller();
+	
+	
+	public Seller selectSellerById(int id);
 }
 	
