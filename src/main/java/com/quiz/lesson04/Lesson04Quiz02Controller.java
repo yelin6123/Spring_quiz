@@ -2,11 +2,14 @@ package com.quiz.lesson04;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quiz.lesson04.bo.RealtorBO;
+import com.quiz.lesson04.domain.Realtor;
 @RequestMapping("/lesson04/quiz02")
 @Controller
 public class Lesson04Quiz02Controller {
@@ -16,19 +19,32 @@ public class Lesson04Quiz02Controller {
 //	입력 form URL : http://localhost:8080/lesson04/quiz02/add-realtor-view
 //	입력 action URL : http://localhost:8080/lesson04/quiz02/add-realtor
 	
+	//순서
+	//1. GetMapping => jsp => PostMapping => @ModelAttribute, Realtor realtor 작성 => domain realtor 추가
+	//2. realtorBO 
+
 	@Autowired
 	private RealtorBO realtorBO;
 	
-	
 	@GetMapping("/add-realtor-view")
 	public String addRealtorView() {
-		
 		return "lesson04/addRealtorView";
-	}
+	} 
+	
 	
 	@PostMapping("/add-realtor")
-	public String addRealtor() {
-		return "lesson04/addRealtor";
+	public String addRealtor(
+			@ModelAttribute Realtor realtor, 
+			Model model) {
+		
+		//DB insert
+		realtorBO.addRealtor(realtor);  //breakpoint 이유 : 리퀘스트파라미터가 잘 넘어오는지, id가 잘 들어가는지, 잘 돌아가는지 알기 위해 
+		
+		//DB select
+		Realtor newRealtor = realtorBO.getRealtorById(realtor.getId());
+		model.addAttribute("realtor", newRealtor);
+		
+		return "lesson04/afterAddRealtor";
 	}
 	
 }

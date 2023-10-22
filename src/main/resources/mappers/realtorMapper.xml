@@ -5,7 +5,8 @@
  
  
  <mapper namespace="com.quiz.lesson04.mapper.RealtorMapper">
- 	<insert id="insertAddRealtor" parameterType="map">
+ 	<insert id="insertRealtor" parameterType="com.quiz.lesson04.domain.Realtor"
+ 	useGeneratedKeys="true" keyProperty="id">
  		INSERT INTO `realtor`
  		(
  		`office`
@@ -21,8 +22,24 @@
  		, #{phoneNumber}
  		, #{address}
  		, #{grade}
- 		, #NOW
- 		, #NOW
+ 		, NOW()
+ 		, NOW()
  		)	
  	</insert>
+ 	
+ 	<select id="selectRealtorById" parameterType="int" resultType="com.quiz.lesson04.domain.Realtor">
+ 		SELECT 
+ 			`id`
+	 		, `office`
+			, `phoneNumber`
+			, `address`
+			, `grade`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`realtor`
+ 		WHERE
+ 			`id` = #{id}
+ 	</select>
+
  </mapper>
