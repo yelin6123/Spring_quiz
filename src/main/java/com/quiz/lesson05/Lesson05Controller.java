@@ -191,9 +191,11 @@ public class Lesson05Controller {
 		
 		model.addAttribute("members", members);
 		return "lesson05/quiz04";
+		//풀이
+		//위의 내용이 member라는 객체에 담길 수 있게 domain에 member라는 공간을 만듬(DB 저장소 처럼) 임포트 할 때 내가 만든 domain과 연결될 수 있게 확인
+
+		
+		
 	}
-	
-	
-	
 	
 }

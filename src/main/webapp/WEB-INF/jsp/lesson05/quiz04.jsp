@@ -14,11 +14,12 @@
 </head>
 <body>
 	<div class="container"> 
+	<img src="/img/sunny.jpg"> <%-- 절대경로  --%>
 		<h1>회원정보 리스트</h1>
 		<table class="table text-center">
 			<thead>	
 				<tr>
-					<th>No</th>
+					<th>No.</th>
 					<th>이름</th>
 					<th>전화번호</th>
 					<th>국적</th>
@@ -32,17 +33,28 @@
 					<td>${status.count}</td>
 					<td>${member.name}</td>
 					<td>
+					<%-- 조건에 해당하는 경우에 대해 선택할 수 있음 1) c:if 2개 2) c:choose 사용 가능 --%>
 					<c:choose>
 						<c:when test="${fn:startsWith(member.phoneNumber, '010')}">${member.phoneNumber}</c:when>
 						<c:otherwise>유효하지 않은 번호입니다.</c:otherwise>
 					</c:choose>
 					</td>
+					<%-- 잘라내기 : split / 배열 중에서 0 index와 1 index를 구분해서 넣기! / 구분자(@) 넣기~ --%>
 					<td><b>${fn:split(member.email, '@')[0]}</b>@${fn:split(member.email, '@')[1]}</td>
+					<%-- 치환 : fn:replace --%>
 					<td>${fn:replace(member.nationality, '시대', '-')}</td>
-					<td>
+					
+					<td class="text-left">
+					<%-- c:if 로 사용할 경우 --%>
+					<%-- <c:if test="${fn:length(member.introduce) >= 15}">
+					${fn:substring(member.introduce, 0, 15)}...
+					</c:if>--%>
+					<%-- <c:if test="${fn:length(member.introduce) < 15}">
+					 ${member.introduce}
+					 </c:if> --%>
 					<c:choose>
 						<c:when test="${fn:length(member.introduce) >= 15}">
-						${fn:substring(member.introduce, 0, 16)}...
+						${fn:substring(member.introduce, 0, 15)}...
 						</c:when>
 						<c:otherwise>${member.introduce}</c:otherwise>
 					</c:choose>
