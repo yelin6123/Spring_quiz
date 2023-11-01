@@ -22,6 +22,28 @@ public class lesson06Controller {
 	
 	@Autowired
 	private BookmarkBO bookmarkBO;
+	
+	// --------- quiz02 ---------
+//	1. AJAX로 동적 태그 추가 - 주소 중복 확인
+//	AJAX로 submit 대신 웹 요청하기 문제 페이지를 재사용 해서 문제를 해결하세요.
+//	url 입력 옆에 중복확인 버튼을 위치 시키세요.
+//	ajax를 통해서 현재 DB에 중복되어 있는 url 이 있는지 화면에 표시하세요.
+//	중복이 되었을 경우 중복된 url 입니다, 중복이 안되었을 경우 저장 가능한 url 입니다. 를 표시하세요.
+	
+	//즐겨찾기 화면
+	//url : lesson06/quiz01/add-bookmark-view1
+	@GetMapping("/quiz01/add-bookmark-view1")
+	public String addBookmarkView1() {
+		return "lesson06/addBookmarkView1";
+	}
+	//url : /lesson06/quiz02/add-bookmark"
+	@PostMapping("/quiz02/add-bookmark")
+	public String addBookmark() {
+		return "lesson06/addBookmark1";
+	}
+	
+	
+	// --------- quiz02 끝 ---------
 
 	//------ quiz01 -------
 //	아래 입력 화면을 통해서 새로운 즐겨 찾기 목록을 추가하세요.

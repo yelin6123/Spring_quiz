@@ -30,7 +30,7 @@
 				<tr>
 					<td>${bookmark.id}</td>
 					<td>${bookmark.name}</td>
-					<td><a href="${bookmark.url} target="_blank">${bookmark.url}</a></td>
+					<td><a href="${bookmark.url} target="blank">${bookmark.url}</a></td>
 				</tr>
 				</c:forEach>
 			</tbody>
